@@ -222,6 +222,7 @@ body {
     display: none;
     align-items: center;
     cursor: default;
+    overflow-y: scroll;
 }
 
 .store p {

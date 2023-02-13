@@ -105,7 +105,7 @@ function setOne(old, item) {
 
 let defaultMoney = getLocal("balance");
 if (defaultMoney === null) {
-  setOne("balance", 129.75);
+  setOne("balance", 250);
   defaultMoney = getLocal("balance");
   cash.innerHTML = defaultMoney;
 } else {
@@ -229,7 +229,7 @@ function deletedByBasket(id) {
     setOne("basket", newArr);
   }
 
-  let newBalance = +myBalance + current.price;
+  let newBalance = (+myBalance + current.price).toFixed(2);
   setOne("balance", newBalance);
   let defaultMoney = getLocal("balance");
   cash.innerHTML = defaultMoney;
