@@ -122,8 +122,14 @@ basket_icon.addEventListener("click", () => {
     : (store.style.display = "none");
 });
 
+if (getLocal("movies") === null) {
+ setOne("movies", []);
+}
+
 function filmMountWriter() {
-  movies.forEach((e) => {
+  setOne("movies", movies);
+  let localmovies = getLocal("movies");
+  localmovies.forEach((e) => {
     hero.innerHTML += `    
         <div class="main-container">
             <div class="poster-container">
@@ -147,7 +153,8 @@ function filmMountWriter() {
 
 function addBasket(e) {
   let myBalance = getLocal("balance");
-  let currentFilm = movies.find((item) => item.id === e);
+  let localmovies = getLocal("movies");
+  let currentFilm = localmovies.find((item) => item.id === e);
 
   if (!(myBalance >= currentFilm.price)) {
     alert(
@@ -239,3 +246,54 @@ function deletedByBasket(id) {
 }
 
 filmMountWriter();
+
+// -------- Search part --------
+
+if (getLocal("search") === null) {
+  setOne("search", "");
+}
+
+let input = document.querySelector("#inp-text");
+let search_btn = document.querySelector("#search-btn");
+
+input.addEventListener("keyup", writeSearch);
+search_btn.addEventListener("click", writeSearch);
+
+function writeSearch() {
+    hero.innerHTML = "";
+    let localmovies = getLocal("movies");
+    localmovies.forEach((e) => {
+      let title = e.title.toLowerCase();
+      let inpValue = input.value.toLowerCase();
+      console.log(title, inpValue)
+      if (
+        title.includes(inpValue) &&
+        inpValue != ""
+      ) {
+       setOne("search", e);
+      let search =getLocal("search");
+        hero.innerHTML += `    
+        <div class="main-container">
+            <div class="poster-container">
+                <a href="#"><img src="${search.image}" class="poster" /></a>
+            </div>
+            <div class="ticket-container">
+                <div class="ticket__content">
+                    <h4 class="ticket__movie-title">${search.title}</h4>
+                    <p class="ticket__movie-slogan">
+                        ${search.slogan}
+                    </p>
+                    <p class="ticket__current-price">$<span id="price">${search.price}</span></p>
+                    <p class="ticket__old-price">$${search.oldprice}</p>
+                    <button onclick=addBasket(${search.id}) class="ticket__buy-btn">Buy now</button>
+                </div>
+            </div>
+        </div> 
+        `;
+      }
+    });
+  
+    if (input.value === "") {
+      filmMountWriter();
+    }
+}

@@ -13,7 +13,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/style/style.css">
     <title>eFlim</title>
 </head>
 
@@ -50,10 +50,10 @@
                            <span>Balance:</span><h3 id="cash"></h3>
                         </li>
                     </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    </form>
-                    <div><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button></div>
+                    <div class="form-inline my-2 my-lg-0">
+                        <input id="inp-text" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    </div>
+                    <div><button id="search-btn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button></div>
 
                 </div>
 
@@ -137,7 +137,7 @@
 </section>
 
 
-        <script src="./assets/app.js"></script>
+        <script src="./assets/app/app.js"></script>
 </body>
 
 </html>
